@@ -1,21 +1,21 @@
 import { useState } from 'react';
 
-const Button = (props) => (
-  <button onClick={props.handleClick}>{props.text}</button>
+const Button = ({ text, handleClick }) => (
+  <button onClick={handleClick}>{text}</button>
 );
 
-const Statistics = (props) => {
-  const total = props.good + props.neutral + props.bad;
+const Statistics = ({ good, neutral, bad }) => {
+  const total = good + neutral + bad;
 
   const calculateAverage = () => {
     if (total === 0) return 0;
-    return (props.good * 1 + props.bad * -1) / total;
+    return (good * 1 + bad * -1) / total;
   };
 
   const calculatePositive = () => {
-    const total = props.good + props.neutral + props.bad;
+    const total = good + neutral + bad;
     if (total === 0) return 0;
-    return (props.good / total) * 100;
+    return (good / total) * 100;
   };
 
   if (total === 0) {
@@ -29,9 +29,9 @@ const Statistics = (props) => {
   return (
     <div>
       <h2>statistics</h2>
-      <p>good {props.good}</p>
-      <p>neutral {props.neutral}</p>
-      <p>bad {props.bad}</p>
+      <p>good {good}</p>
+      <p>neutral {neutral}</p>
+      <p>bad {bad}</p>
       <p>all {total} </p>
       <p>average {calculateAverage()}</p>
       <p>positive {calculatePositive()} %</p>
